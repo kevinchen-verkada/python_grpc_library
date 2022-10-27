@@ -1,0 +1,5 @@
+# Opt into new language features that grpc now requires. See https://github.com/grpc/grpc/blob/5e27b2df9767fabeae1cd764114b2583daa2bf22/test/distrib/bazel/python/.bazelrc#L3
+build --cxxopt='-std=c++14'
+
+test --test_output=errors
+test --test_env=BAZEL_TEST=true
