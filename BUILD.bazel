@@ -1,6 +1,7 @@
 load("@rules_proto_grpc//python:python_grpc_library.bzl", "python_grpc_library")
 load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@rules_python//python:defs.bzl", "py_test")
+load("@pip_deps//:requirements.bzl", "requirement")
 
 proto_library(
     name = "my_service_grpc",
@@ -25,11 +26,24 @@ py_library(
 py_test(
     name = "test_my_service",
     srcs = ["test_my_service.py"],
-    legacy_create_init = False,
     main = "test_my_service.py",
     python_version = "PY3",
     srcs_version = "PY3",
     deps = [
+        ":my_service_grpc_py",
+        requirement("ddtrace"),
+    ],
+)
+
+
+py_test(
+    name = "test_my_service_1",
+    srcs = ["test_my_service.py"],
+    main = "test_my_service.py",
+    python_version = "PY3",
+    srcs_version = "PY3",
+    deps = [
+        requirement("ddtrace"),
         ":my_service_grpc_py",
     ],
 )

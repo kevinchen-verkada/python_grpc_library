@@ -47,6 +47,31 @@ http_archive(
     urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/4.2.0.tar.gz"],
 )
 
+http_archive(
+    name = "rules_python",
+    sha256 = "8c8fe44ef0a9afc256d1e75ad5f448bb59b81aba149b8958f02f7b3a98f5d9b4",
+    strip_prefix = "rules_python-0.13.0",
+    url = "https://github.com/bazelbuild/rules_python/archive/refs/tags/0.13.0.tar.gz",
+)
+
+http_archive(
+    name = "io_buildbuddy_buildbuddy_toolchain",
+    sha256 = "656985ebceaa0116adcae081b19becf41f246893759ac41f86267cb2220f966e",
+    strip_prefix = "buildbuddy-toolchain-2a9769e75878519bf48c12334214501d4859154b",
+    urls = ["https://github.com/buildbuddy-io/buildbuddy-toolchain/archive/2a9769e75878519bf48c12334214501d4859154b.tar.gz"],
+)
+
+load("@rules_python//python:pip.bzl", "pip_parse")
+
+pip_parse(
+    name = "pip_deps",
+    requirements_lock = "//:requirements_lock.txt",
+)
+
+load("@pip_deps//:requirements.bzl", "install_deps")
+
+install_deps()
+
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
 
 rules_proto_grpc_toolchains()
@@ -78,20 +103,6 @@ rules_proto_toolchains()
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
 
 protobuf_deps()
-
-http_archive(
-    name = "rules_python",
-    sha256 = "8c8fe44ef0a9afc256d1e75ad5f448bb59b81aba149b8958f02f7b3a98f5d9b4",
-    strip_prefix = "rules_python-0.13.0",
-    url = "https://github.com/bazelbuild/rules_python/archive/refs/tags/0.13.0.tar.gz",
-)
-
-http_archive(
-    name = "io_buildbuddy_buildbuddy_toolchain",
-    sha256 = "656985ebceaa0116adcae081b19becf41f246893759ac41f86267cb2220f966e",
-    strip_prefix = "buildbuddy-toolchain-2a9769e75878519bf48c12334214501d4859154b",
-    urls = ["https://github.com/buildbuddy-io/buildbuddy-toolchain/archive/2a9769e75878519bf48c12334214501d4859154b.tar.gz"],
-)
 
 load("@io_buildbuddy_buildbuddy_toolchain//:deps.bzl", "buildbuddy_deps")
 

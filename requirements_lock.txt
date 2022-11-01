@@ -1,0 +1,10 @@
+ddtrace==1.4.2
+typing_extensions==4.3.0
+six==1.16.0
+attrs==21.4.0
+bytecode==0.13.0
+packaging==21.3
+ddsketch==2.0.4
+tenacity==8.0.1
+protobuf==3.19.4
+pyparsing==3.0.9
