@@ -1,8 +1,6 @@
 import sys
 
 
-def foo():
+def fee():
     print("Hello world")
     print(sys.version)
-    if "a" == "b":
-        print("never ever")

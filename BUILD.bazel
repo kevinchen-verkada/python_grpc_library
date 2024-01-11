@@ -1,0 +1,13 @@
+sh_binary(
+    name = "genhtml",
+    srcs = ["genhtml.sh"],
+    data = [
+        "@com_github_linux_test_project_lcov//:bin",
+        "@com_github_linux_test_project_lcov//:bin/genhtml",
+        "@com_github_linux_test_project_lcov//:lib",
+    ],
+    env = {
+        "BINARY": "$(rootpath @com_github_linux_test_project_lcov//:bin/genhtml)",
+    },
+    visibility = ["//visibility:public"],
+)

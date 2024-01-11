@@ -30,3 +30,30 @@ pip_parse(
 load("@pip_deps//:requirements.bzl", "install_deps")
 
 install_deps()
+
+http_archive(
+    name = "com_github_linux_test_project_lcov",
+    build_file_content = """
+
+exports_files(
+    ["bin/genhtml"]
+)
+
+filegroup(
+    name = "bin",
+    srcs = glob(["bin/*"]),
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "lib",
+    srcs = glob(["lib/*"]),
+    visibility = ["//visibility:public"],
+)
+""",
+    sha256 = "35866dd6a145dd50d9dccf2eeb7481312cfdb56c733d783074df097013acf6e3",  # pragma: allowlist secret
+    strip_prefix = "lcov-950771ee234fdabae3fe75281dd7b2d636e47e07",
+    urls = [
+        "https://github.com/linux-test-project/lcov/archive/950771ee234fdabae3fe75281dd7b2d636e47e07.zip",
+    ],
+)

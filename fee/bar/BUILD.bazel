@@ -1,0 +1,20 @@
+load("@rules_python//python:defs.bzl", "py_library", "py_test")
+
+py_library(
+    name = "my_service_py_bar",
+    srcs = ["my_service_py_bar.py"],
+    visibility = ["//visibility:public"],
+    deps = [
+        # ":my_service_grpc_py",
+    ],
+)
+
+py_test(
+    name = "test_my_service_bar",
+    srcs = ["test_my_service_bar.py"],
+    main = "test_my_service_bar.py",
+    deps = [
+        ":my_service_py_bar",
+        # "//:my_service_py",
+    ],
+)
