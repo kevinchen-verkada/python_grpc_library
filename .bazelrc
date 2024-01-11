@@ -3,3 +3,10 @@ build --cxxopt='-std=c++14'
 
 test --test_output=errors
 test --test_env=BAZEL_TEST=true
+
+
+coverage --combined_report=lcov
+coverage --instrumentation_filter="^//"
+coverage --experimental_split_coverage_postprocessing
+coverage --experimental_fetch_all_coverage_outputs
+coverage --strategy=CoverageReport=local

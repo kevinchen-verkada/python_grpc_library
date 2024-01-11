@@ -1,19 +1,19 @@
 import unittest
 
 # import my_service_py
-from foo.bar.my_service_py_bar import foo
+from fee.bar.my_service_py_bar import fee
 
 
-def get_foo():
-    return "foo"
+def get_fee():
+    return "fee"
 
 
 class TestEnvironCtx(unittest.TestCase):
     def test_modified_environ__no_args(self) -> None:
-        # my_service_py.foo()
-        foo()
-        actual = get_foo()
-        self.assertEqual(actual, "foo")
+        # my_service_py.fee()
+        fee()
+        actual = get_fee()
+        self.assertEqual(actual, "fee")
 
 
 if __name__ == "__main__":
